@@ -1,8 +1,20 @@
 {
   "events": [
     {
-      "name": "kldksñdksñ",
-      "id": 3
+      "name": "Partido de golf",
+      "description": "Torneo de golfs",
+      "location": "casa de campo",
+      "category": "deportes",
+      "date": "20 de marzo",
+      "id": 5
+    },
+    {
+      "name": "Tennis match on grass",
+      "description": "final match of the season",
+      "location": "wimbledon",
+      "category": "sports",
+      "date": "july 10",
+      "id": 6
     }
   ]
 }

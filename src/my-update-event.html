@@ -1,0 +1,115 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-update-event">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block
+            }
+            
+            paper-button.green {
+                background-color: var(--paper-green-500); 
+                color: white;
+            }
+
+        </style>
+
+    <app-route
+        route="{{route}}"
+        pattern="[[rootPath]]:id"
+        data="{{routeData}}">
+    </app-route>
+        
+    <iron-ajax
+        id="getEvent"
+        url='http://localhost:3000/events/[[id]]'
+        last-response="{{event}}">
+    </iron-ajax>
+
+    <iron-ajax
+        id="updateEvent"
+        url='http://localhost:3000/events/[[id]]'
+        method="put"
+        content-type="application/json"
+        body="[[ event ]]"
+        on-response="updateEventResponse"
+        on-error="updateEventError">
+    </iron-ajax>
+
+    <div class="card">
+        <form>
+            <paper-input
+                label="Event Name"
+                value="{{ event.name }}">
+            </paper-input>
+            <paper-input
+                label="Event Description"
+                value="{{ event.description }}">
+            </paper-input>
+            <paper-input
+                label="Location"
+                value="{{ event.location }}">
+            </paper-input>
+            <paper-input
+                label="Category"
+                value="{{ event.category }}">
+            </paper-input>
+            <paper-input
+                label="Date"
+                value="{{ event.date }}">
+            </paper-input>
+            <paper-button toggles raised class="custom green" on-click="updateEvent"> Update Event </paper-button>
+        </form>
+    </div>
+
+    </template>
+
+    <script>
+        
+        class MyUpdateEvent extends Polymer.Element {
+            
+            static get is() {
+                return 'my-update-event';
+            }
+
+            
+            static get properties() {
+                return {
+                    route: Object,
+                    routeData: Object,
+                    event: Object,
+                    id: Number
+                };
+            }
+
+            static get observers() {
+                return [
+                    'getEventToUpdate(routeData.id)'
+                ];
+            }
+
+            getEventToUpdate (id) {
+                console.log(id)
+                this.id = id
+                this.$.getEvent.generateRequest()
+            }
+
+            updateEvent() {
+                this.$.updateEvent.generateRequest()
+            }
+
+            updateEventResponse(e) {
+                console.log('Evento actualizado')
+            }
+
+            updateEventError(error) {
+                console.log('There was an error updating event', error.detail.error)
+            }
+        }
+
+        window.customElements.define(MyUpdateEvent.is, MyUpdateEvent);
+    </script>
+</dom-module>

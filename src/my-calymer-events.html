@@ -1,5 +1,6 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-calymer-events">
@@ -8,6 +9,21 @@
             :host {
                 display: block
             }
+
+            a {
+                color: blue;
+                text-decoration: none;
+            }
+
+            h2 {
+                color:var(--paper-green-500); 
+            }
+
+            paper-button.green {
+                background-color: red;
+                color: white;
+            }
+            
         </style>
 
     <iron-ajax
@@ -27,7 +43,10 @@
     <div class="card">
         <template is="dom-repeat" items="[[ events ]]" as="event">
             <h2>[[ event.name ]]</h2>
-            <button on-click="deleteEvent" id="[[event.id]]">Delete event</button>
+            <p>[[ event.description ]]</p>
+            <a href$="/update-event/[[event.id]]">Update event</a>
+            <paper-button toggles raised class="custom green" on-click="deleteEvent" id="[[event.id]]">Delete event</paper-button>
+            <hr>
         </template>
     </div>
 
