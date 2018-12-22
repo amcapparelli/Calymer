@@ -12,62 +12,55 @@
 
     <iron-ajax
         auto
-        url=' http://localhost:3000/events'
+        url='http://localhost:3000/events'
         last-response="{{ events }}" >
+    </iron-ajax>
+
+    <iron-ajax
+        id="deleteEvent"
+        method="delete"
+        url='http://localhost:3000/events/[[id]]'
+        on-response="deleteEventResponse"
+        on-error="deleteEventError">
     </iron-ajax>
 
     <div class="card">
         <template is="dom-repeat" items="[[ events ]]" as="event">
             <h2>[[ event.name ]]</h2>
+            <button on-click="deleteEvent" id="[[event.id]]">Delete event</button>
         </template>
     </div>
 
     </template>
 
     <script>
-        /**
-         * `my-calymer-events` Description
-         *
-         * @summary ShortDescription.
-         * @customElement
-         * @polymer
-         * @extends {Polymer.Element}
-         */
+        
         class MyCalymerEvents extends Polymer.Element {
-            /**
-             * String providing the tag name to register the element under.
-             */
+            
             static get is() {
                 return 'my-calymer-events';
             }
 
-            /**
-             * Object describing property-related metadata used by Polymer features
-             */
+           
             static get properties() {
                 return {
-                    events: Array
+                    events: Array,
+                    id: Number
                 };
             }
 
-            /**
-             * Instance of the element is created/upgraded. Use: initializing state,
-             * set up event listeners, create shadow dom.
-             * @constructor
-             */
-            constructor() {
-                super();
+            deleteEvent(e) {
+                const id = e.target.getAttribute('id')
+                this.id = id 
+                this.$.deleteEvent.generateRequest()
             }
 
-            /**
-             * Use for one-time configuration of your component after local DOM is initialized. 
-             */
-            ready() {
-                super.ready();
+            deleteEventResponse() {
+               console.log('event deleted')
+            }
 
-                Polymer.RenderStatus.afterNextRender(this, function() {
-                    
-                });
+            deleteEventError(error) {
+               console.log('There was an error deleting the event', error.detail.error)
             }
 
         }
