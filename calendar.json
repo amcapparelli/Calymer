@@ -1,15 +1,20 @@
 {
-    "events": [
-        {
-            "id": 1,
-            "name": "Prueba1",
-            "location": "",
-            "description": "",
-            "category": "",
-            "date": "",
-            "confirmations":"",
-            "cancelations": "",
-            "organizer": ""
-          }
-    ]
+  "events": [
+    {
+      "id": 1,
+      "name": "Prueba1",
+      "location": "",
+      "description": "",
+      "category": "",
+      "date": "",
+      "confirmations": "",
+      "cancelations": "",
+      "organizer": ""
+    },
+    {
+      "name": "Camping",
+      "description": "Casa de Campo",
+      "id": 2
+    }
+  ]
 }

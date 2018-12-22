@@ -1,0 +1,90 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+
+<dom-module id="my-create-event">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block
+            }
+        </style>
+
+    <iron-ajax
+        id="postEvent"
+        method="post"
+        url='http://localhost:3000/events'
+        content-type='application/json'
+        handleAs="json"
+        body="[[ event ]]"
+        on-response="postEventResponse"
+        on-error="postEventError">
+    </iron-ajax>
+
+    <div class="card">
+        <form>
+            <paper-input
+                label="Event Name"
+                value="{{ event.name::input }}">
+            </paper-input>
+            <paper-input
+                label="Event Description"
+                value="{{ event.description::input }}">
+            </paper-input>
+            <paper-input
+                label="Location"
+                value="{{ event.location::input }}">
+            </paper-input>
+            <paper-input
+                label="Category"
+                value="{{ event.category::input }}">
+            </paper-input>
+            <paper-input
+                label="Date"
+                value="{{ event.date::input }}">
+            </paper-input>
+            <paper-button on-click="createEvent">Create Event </paper-button>
+        </form>
+    </div>
+    </template>
+
+    <script>
+       
+        class MyCreateEvent extends Polymer.Element {
+            
+            static get is() {
+                return 'my-create-event';
+            }
+
+            static get properties() {
+                return {
+                    event: {
+                        type: Object,
+                        value: function() {
+                            return {}
+                        }
+                        }
+                    }
+                };
+            
+
+           createEvent(e) {
+               e.preventDefault()
+               this.$.postEvent.generateRequest()
+           }
+
+           postEventResponse() {
+               console.log('evento creado')
+           }
+
+           postEventError(error) {
+               console.log('There was an error creting the event', error.detail.error)
+           }
+
+        }
+
+        window.customElements.define(MyCreateEvent.is, MyCreateEvent);
+    </script>
+</dom-module>
