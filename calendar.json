@@ -1,0 +1,15 @@
+{
+    "events": [
+        {
+            "id": 1,
+            "name": "Prueba1",
+            "location": "",
+            "description": "",
+            "category": "",
+            "date": "",
+            "confirmations":"",
+            "cancelations": "",
+            "organizer": ""
+          }
+    ]
+}
