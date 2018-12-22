@@ -2,7 +2,7 @@
   "events": [
     {
       "name": "Partido de golf",
-      "description": "Torneo de golfs",
+      "description": "USA",
       "location": "casa de campo",
       "category": "deportes",
       "date": "20 de marzo",
@@ -15,6 +15,24 @@
       "category": "sports",
       "date": "july 10",
       "id": 6
+    },
+    {
+      "name": "partido de cartas",
+      "id": 7
+    },
+    {
+      "name": "partida de dados",
+      "description": "en el almacén",
+      "id": 8
+    },
+    {
+      "name": "partido de naipes 2",
+      "id": 9
+    },
+    {
+      "name": "Cervezas fin de año",
+      "description": "cañas en lo de peteco",
+      "id": 10
     }
   ]
 }

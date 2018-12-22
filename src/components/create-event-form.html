@@ -1,0 +1,74 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../src/shared-styles.html">
+
+<dom-module id="create-event-form">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block
+            }
+        </style>
+
+    
+    <div class="card">
+        <form>
+            <paper-input
+                label="Event Name"
+                value="{{ event.name::input }}">
+            </paper-input>
+            <paper-input
+                label="Event Description"
+                value="{{ event.description::input }}">
+            </paper-input>
+            <paper-input
+                label="Location"
+                value="{{ event.location::input }}">
+            </paper-input>
+            <paper-input
+                label="Category"
+                value="{{ event.category::input }}">
+            </paper-input>
+            <paper-input
+                label="Date"
+                value="{{ event.date::input }}">
+            </paper-input>
+            <paper-button on-click="createEvent">Create Event </paper-button>
+        </form>
+    </div>
+
+    </template>
+
+    <script>
+        
+        class CreateEventForm extends Polymer.Element {
+            
+            static get is() {
+                return 'create-event-form';
+            }
+
+            
+            static get properties() {
+                return {
+                    event: {
+                        type: Object,
+                        value: function() {
+                            return {}
+                        }
+                    }
+                };
+            }
+
+            createEvent(e) {
+                e.preventDefault()
+                this.dispatchEvent(new CustomEvent('new-event-created', {
+                    detail: this.event
+                }));
+            }
+  
+        }
+
+        window.customElements.define(CreateEventForm.is, CreateEventForm);
+    </script>
+</dom-module>

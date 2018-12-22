@@ -1,8 +1,8 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="shared-styles.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../bower_components/paper-input/paper-input.html">
-<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../src/components/create-event-form.html">
 
 <dom-module id="my-create-event">
     <template>
@@ -23,31 +23,10 @@
         on-error="postEventError">
     </iron-ajax>
 
-    <div class="card">
-        <form>
-            <paper-input
-                label="Event Name"
-                value="{{ event.name::input }}">
-            </paper-input>
-            <paper-input
-                label="Event Description"
-                value="{{ event.description::input }}">
-            </paper-input>
-            <paper-input
-                label="Location"
-                value="{{ event.location::input }}">
-            </paper-input>
-            <paper-input
-                label="Category"
-                value="{{ event.category::input }}">
-            </paper-input>
-            <paper-input
-                label="Date"
-                value="{{ event.date::input }}">
-            </paper-input>
-            <paper-button on-click="createEvent">Create Event </paper-button>
-        </form>
-    </div>
+    <create-event-form on-new-event-created="postEvent"></create-event-form>
+
+    <paper-toast id="toast"></paper-toast>
+    <paper-toast id="toastError"></paper-toast>
     </template>
 
     <script>
@@ -60,30 +39,27 @@
 
             static get properties() {
                 return {
-                    event: {
-                        type: Object,
-                        value: function() {
-                            return {}
-                        }
-                        }
+                   event: Object
                     }
                 };
             
 
-           createEvent(e) {
-               e.preventDefault()
+           postEvent(e) {
+               this.event = e.detail 
                this.$.postEvent.generateRequest()
            }
 
            postEventResponse() {
-               console.log('evento creado')
+               this.$.toast.show('Great! You have created a new event!')
            }
 
            postEventError(error) {
-               console.log('There was an error creting the event', error.detail.error)
+               this.$.toastError.show('Sorry, couldn´t create your event. Try again later!')
+               console.log('There was an error creating the event', error.detail.error)
            }
 
         }
+
 
         window.customElements.define(MyCreateEvent.is, MyCreateEvent);
     </script>

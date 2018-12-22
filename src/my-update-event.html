@@ -1,6 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-update-event">
@@ -64,6 +65,9 @@
             <paper-button toggles raised class="custom green" on-click="updateEvent"> Update Event </paper-button>
         </form>
     </div>
+    
+    <paper-toast id="toast"></paper-toast>
+    <paper-toast id="toastError"></paper-toast>
 
     </template>
 
@@ -102,10 +106,11 @@
             }
 
             updateEventResponse(e) {
-                console.log('Evento actualizado')
+                this.$.toast.show('Success! Event Updated!')
             }
 
             updateEventError(error) {
+                this.$.toastError.show('Sorry, couldn´t update your event. Try again later.')
                 console.log('There was an error updating event', error.detail.error)
             }
         }
