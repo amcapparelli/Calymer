@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../components/date-inputs.html">
 <link rel="import" href="../../src/shared-styles.html">
 
 <dom-module id="create-event-form">
@@ -13,7 +14,7 @@
 
     
     <div class="card">
-        <form>
+        <form >
             <paper-input
                 label="Event Name"
                 value="{{ event.name::input }}">
@@ -30,10 +31,7 @@
                 label="Category"
                 value="{{ event.category::input }}">
             </paper-input>
-            <paper-input
-                label="Date"
-                value="{{ event.date::input }}">
-            </paper-input>
+            <date-inputs on-date-changed="dateChanged"></date-inputs>  
             <paper-button on-click="createEvent">Create Event </paper-button>
         </form>
     </div>
@@ -55,13 +53,28 @@
                         type: Object,
                         value: function() {
                             return {}
+                        },
+                    },
+                    date: {
+                        type: Object,
+                        value: function() {
+                            return {}
                         }
                     }
-                };
+            };
+        }
+            
+            dateChanged(e) {
+               if(!e.detail.path) {
+                   return
+               }
+               this.set(e.detail.path, e.detail.value)
             }
 
             createEvent(e) {
                 e.preventDefault()
+                var date = new Date(this.date.year, this.date.month, this.date.hour, this.date.mins)
+                this.event.date = date
                 this.dispatchEvent(new CustomEvent('new-event-created', {
                     detail: this.event
                 }));

@@ -17,22 +17,9 @@
       "id": 6
     },
     {
-      "name": "partido de cartas",
+      "name": "Prueba con fecha",
+      "date": "2020-11-12T10:00:00.000Z",
       "id": 7
-    },
-    {
-      "name": "partida de dados",
-      "description": "en el almacén",
-      "id": 8
-    },
-    {
-      "name": "partido de naipes 2",
-      "id": 9
-    },
-    {
-      "name": "Cervezas fin de año",
-      "description": "cañas en lo de peteco",
-      "id": 10
     }
   ]
 }

@@ -1,0 +1,91 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/web-animations-js/web-animations-next.min.html">
+
+<dom-module id="date-inputs">
+    <template>
+        <style>
+            :host {
+                display: block
+            }
+
+        </style>
+        
+    <paper-input
+        required
+        auto-validate
+        pattern="([0-9]|1[0-9]|2[0-3])"
+        error-message="Hour must be a number between 0 and 23"
+        label="Hour (0-23)"
+        value="{{ date.hour::input }}">
+    </paper-input>
+
+    <paper-input
+        required
+        auto-validate
+        pattern="([0-9]|[1-4][0-9]|5[0-9])"
+        error-message="Hour must be a number between 0 and 59"
+        label="Mins (0-59)"
+        value="{{ date.mins::input }}">
+    </paper-input>
+
+    <paper-dropdown-menu vertical-align="bottom" horizontal-align="left" label="Months"  >
+        <paper-listbox slot="dropdown-content" class="dropdown-content" attr-for-selected="item-name" selected="{{ date.month }}" >
+          <paper-item item-name="1">January</paper-item>
+          <paper-item item-name="2">February</paper-item>
+          <paper-item item-name="3">March</paper-item>
+          <paper-item item-name="4">April</paper-item>
+          <paper-item item-name="5">May</paper-item>
+          <paper-item item-name="6">June</paper-item>
+          <paper-item item-name="7">July</paper-item>
+          <paper-item item-name="8">August</paper-item>
+          <paper-item item-name="9">September</paper-item>
+          <paper-item item-name="10">October</paper-item>
+          <paper-item item-name="11">November</paper-item>
+          <paper-item item-name="12">December</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
+
+      <paper-dropdown-menu vertical-align="bottom" horizontal-align="left" label="Years">
+        <paper-listbox slot="dropdown-content" class="dropdown-content" attr-for-selected="item-name" selected="{{ date.year }}" >
+          <paper-item item-name="2019">2019</paper-item>
+          <paper-item item-name="2020">2020</paper-item>
+          <paper-item item-name="2021">2021</paper-item>
+          <paper-item item-name="2022">2022</paper-item>
+          <paper-item item-name="2023">2023</paper-item>
+        </paper-listbox>
+      </paper-dropdown-menu>
+
+    </template>
+
+    <script>
+       
+        class DateInputs extends Polymer.Element {
+           
+            static get is() {
+                return 'date-inputs';
+            }
+
+            
+            static get properties() {
+                return {
+                    date: {
+                        type: Object,
+                        notify: true,
+                        value: function() {
+                            return {}
+                        }
+                    },
+                   
+                };
+            }
+
+           
+        }
+
+        window.customElements.define(DateInputs.is, DateInputs);
+    </script>
+</dom-module>
