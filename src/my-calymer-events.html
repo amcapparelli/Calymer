@@ -1,6 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-calymer-events">
@@ -17,6 +18,15 @@
 
             h2 {
                 color:var(--paper-green-500); 
+            }
+
+            paper-dialog.size-position {
+                position: fixed;
+                top: 16px;
+                right: 16px;
+                width: 300px;
+                height: 300px;
+                overflow: auto;
             }
 
             paper-button.green {
@@ -40,12 +50,18 @@
         on-error="deleteEventError">
     </iron-ajax>
 
+        <paper-dialog id="dialog">
+            <p>¿Seguro que quieres borrar este evento?</p>
+            <paper-button on-click="deleteEvent">Aceptar</paper-button>
+            <paper-button on-click="cancelDelete">Cancelar</paper-button>
+        </paper-dialog>
+
     <div class="card">
         <template is="dom-repeat" items="[[ events ]]" as="event">
             <h2>[[ event.name ]]</h2>
             <p>[[ event.description ]]</p>
             <a href$="/update-event/[[event.id]]">Update event</a>
-            <paper-button toggles raised class="custom green" on-click="deleteEvent" id="[[event.id]]">Delete event</paper-button>
+            <paper-button toggles raised class="custom green" on-click="dialogOpen" id="[[event.id]]">Delete event</paper-button>
             <hr>
         </template>
     </div>
@@ -68,10 +84,19 @@
                 };
             }
 
-            deleteEvent(e) {
+            dialogOpen (e) {
                 const id = e.target.getAttribute('id')
-                this.id = id 
+                this.id = id
+                this.$.dialog.open()
+            }
+
+            cancelDelete () {
+                this.$.dialog.close()
+            }
+
+            deleteEvent() {
                 this.$.deleteEvent.generateRequest()
+                this.$.dialog.close()
             }
 
             deleteEventResponse() {
