@@ -45,7 +45,8 @@
             
 
            postEvent(e) {
-               this.event = e.detail 
+               this.event = e.detail
+               this.event.confirmations = '' 
                this.$.postEvent.generateRequest()
            }
 

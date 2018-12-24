@@ -1,0 +1,114 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../src/components/show-date.html">
+<link rel="import" href="../src/shared-styles.html">
+
+<dom-module id="my-single-event">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block
+            }
+        </style>
+
+    <app-route
+        route="{{route}}"
+        pattern="[[rootPath]]:id"
+        data="{{routeData}}">
+    </app-route>
+
+    <iron-ajax
+        id="getEvent"
+        url='http://localhost:3000/events/[[id]]'
+        last-response="{{event}}">
+    </iron-ajax>
+
+    <iron-ajax
+        id="updateConfirmations"
+        url='http://localhost:3000/events/[[id]]'
+        method="put"
+        content-type="application/json"
+        body="[[ event ]]"
+        on-response="updateConfirmationsResponse"
+        on-error="updateConfirmationsError">
+    </iron-ajax>
+
+    <div class="card">
+        <h2>[[ event.name ]]</h2>
+        <h3>Organizer: [[ event.organizer ]]</h3>
+        <span> Location: [[ event.location ]]</span>
+        <p>[[ event.description ]]</p>
+        <show-date date="[[ event.date ]]"></show-date>
+        <p>Asistants: [[ event.confirmations ]]</p>
+        <paper-button id="confirmationButton" on-click="confirmAssistance">Confirm</paper-button>
+        <paper-button id="declineButton" on-click="declineAssistance">Decline</paper-button>
+    </div>
+
+    <paper-toast id="success"></paper-toast>
+    <paper-toast id="error"></paper-toast>
+    </template>
+
+    <script>
+        
+        class MySingleEvent extends Polymer.Element {
+            /**
+             * String providing the tag name to register the element under.
+             */
+            static get is() {
+                return 'my-single-event';
+            }
+
+            /**
+             * Object describing property-related metadata used by Polymer features
+             */
+            static get properties() {
+                return {
+                    route: Object,
+                    routeData: Object,
+                    event: Object,
+                    id: Number,
+                    date: String
+                };
+            }
+
+            static get observers() {
+                return [
+                    'getEventToShow(routeData.id)'
+                ];
+            }
+
+            getEventToShow(id) {
+                this.id = id
+                this.$.getEvent.generateRequest()
+               
+            }
+
+            confirmAssistance () {
+                const confirmations = this.get('event.confirmations')
+                this.set('event.confirmations', parseInt(confirmations + 1))
+                this.$.confirmationButton.setAttribute('disabled', '')
+                this.$.declineButton.setAttribute('disabled', '')
+                this.$.updateConfirmations.generateRequest()
+            }
+
+            declineAssistance () {
+                this.$.declineButton.setAttribute('disabled', '')
+                this.$.confirmationButton.setAttribute('disabled', '')
+                this.$.error.show('OK! you decline this event.')
+            }
+
+            updateConfirmationsResponse() {
+                this.$.success.show('Thank you! I have been confirmed!')
+            }
+
+            updateConfirmationsError(error) {
+                this.$.error.show('Sorry, your assistance couldnt be confirmed')
+                console.log('sorry, your assistance couldnt be confirmed', error)
+            }
+        }
+
+        window.customElements.define(MySingleEvent.is, MySingleEvent);
+    </script>
+</dom-module>

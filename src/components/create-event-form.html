@@ -16,14 +16,31 @@
     <div class="card">
         <form >
             <paper-input
+                required
+                auto-validate
+                error-message="Required field"
                 label="Event Name"
                 value="{{ event.name::input }}">
             </paper-input>
             <paper-input
-                label="Event Description"
+                required
+                auto-validate
+                error-message="Required field"
+                label="Organizer"
+                value="{{ event.organizer::input }}">
+            </paper-input>
+            <paper-input
+                required
+                auto-validate
+                maxlength="150"
+                error-message="Required field (150 characters max)."
+                label="Event Description (150 characters max)"
                 value="{{ event.description::input }}">
             </paper-input>
             <paper-input
+                required
+                auto-validate
+                error-message="Required field"
                 label="Location"
                 value="{{ event.location::input }}">
             </paper-input>
@@ -73,7 +90,7 @@
 
             createEvent(e) {
                 e.preventDefault()
-                var date = new Date(this.date.year, this.date.month, this.date.hour, this.date.mins)
+                var date = new Date(this.date.year, this.date.month, this.date.day, this.date.hour, this.date.mins)
                 this.event.date = date
                 this.dispatchEvent(new CustomEvent('new-event-created', {
                     detail: this.event

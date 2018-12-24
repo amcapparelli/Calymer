@@ -1,0 +1,61 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="show-date">
+    <template>
+        <style>
+            :host {
+                display: block
+            }
+        </style>
+
+    
+    <p> When: [[ date ]]</p>
+        
+
+    </template>
+
+    <script>
+        /**
+         * `show-date` Description
+         *
+         * @summary ShortDescription.
+         * @customElement
+         * @polymer
+         * @extends {Polymer.Element}
+         */
+        class ShowDate extends Polymer.Element {
+            /**
+             * String providing the tag name to register the element under.
+             */
+            static get is() {
+                return 'show-date';
+            }
+
+            /**
+             * Object describing property-related metadata used by Polymer features
+             */
+            static get properties() {
+                return {
+                    date: String
+                };
+            }
+
+           /**
+             * Array of strings describing multi-property observer methods and their
+             * dependant properties
+             */
+           static get observers() {
+               return [
+                   'dateRecibed(date)'
+               ];
+           }
+
+           dateRecibed(date) {
+                const dateString = new Date(date).toDateString()
+                this.date = dateString
+           }
+        }
+
+        window.customElements.define(ShowDate.is, ShowDate);
+    </script>
+</dom-module>

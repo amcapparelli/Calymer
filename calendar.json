@@ -1,9 +1,63 @@
 {
   "events": [
     {
-      "name": "Prueba con fecha",
-      "date": "2020-11-12T10:00:00.000Z",
-      "id": 7
+      "description": "sdasdsadsa",
+      "date": null,
+      "id": 13
+    },
+    {
+      "name": "Cena NAvida",
+      "description": "cena en casa",
+      "location": "madrid",
+      "category": "actividades sociales",
+      "date": "2023-12-23T20:00:00.000Z",
+      "id": 14
+    },
+    {
+      "name": "Viaje Uruguay",
+      "organizer": "Alejandro Capparelli",
+      "description": "viaje en famili",
+      "location": "Uruguay",
+      "category": "viajes",
+      "date": "2020-11-12T14:00:00.000Z",
+      "id": 15
+    },
+    {
+      "name": "Viaje Chile",
+      "organizer": "Natalia",
+      "description": "viaje!",
+      "location": "Chile",
+      "category": "viajes",
+      "date": "2021-12-23T22:00:00.000Z",
+      "confirmations": 5,
+      "id": 16
+    },
+    {
+      "name": "Evento con fecha completa",
+      "organizer": "Alejandro",
+      "description": "Evento con fecha completa ",
+      "location": "madrid",
+      "category": "prueba",
+      "date": "2019-10-09T22:00:00.000Z",
+      "confirmations": "",
+      "id": 17
+    },
+    {
+      "name": "Evento 2 con fecha completa",
+      "organizer": "alex",
+      "description": "fecha completa",
+      "location": "montevideo",
+      "category": "viaje",
+      "date": "2020-03-12T11:00:00.000Z",
+      "confirmations": "",
+      "id": 18
+    },
+    {
+      "name": "Evento con mes corregido",
+      "organizer": "alex",
+      "date": "2022-07-31T10:00:00.000Z",
+      "confirmations": 1,
+      "id": 19
     }
   ]
 }

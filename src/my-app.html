@@ -25,6 +25,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="lazy-import" href="my-calymer-events.html">
 <link rel="lazy-import" href="my-create-event.html">
 <link rel="lazy-import" href="my-update-event.html">
+<link rel="lazy-import" href="my-single-event.html">
 <link rel="lazy-import" href="my-view404.html">
 
 <dom-module id="my-app">
@@ -105,11 +106,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             attr-for-selected="name"
             fallback-selection="view404"
             role="main">
-          <my-view1 name="view1"></my-view1>
-          <my-view2 name="view2"></my-view2>
-          <my-view3 name="view3"></my-view3>
           <my-calymer-events name="calymer-events"></my-calymer-events>
           <my-create-event name="create-event"></my-create-event>
+          <my-single-event name="single-event" route="[[subroute]]"></my-single-event>
           <my-update-event name="update-event"  route="[[subroute]]"></my-update-event>
           <my-view404 name="view404"></my-view404>
         </iron-pages>

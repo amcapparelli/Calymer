@@ -32,20 +32,29 @@
         value="{{ date.mins::input }}">
     </paper-input>
 
+    <paper-input
+        required
+        auto-validate
+        pattern="([1-9]|[12][0-9]|3[01])"
+        error-message="Hour must be a number between 1 and 31"
+        label="Days (1-31)"
+        value="{{ date.day::input }}">
+    </paper-input>
+
     <paper-dropdown-menu vertical-align="bottom" horizontal-align="left" label="Months"  >
-        <paper-listbox slot="dropdown-content" class="dropdown-content" attr-for-selected="item-name" selected="{{ date.month }}" >
-          <paper-item item-name="1">January</paper-item>
-          <paper-item item-name="2">February</paper-item>
-          <paper-item item-name="3">March</paper-item>
-          <paper-item item-name="4">April</paper-item>
-          <paper-item item-name="5">May</paper-item>
-          <paper-item item-name="6">June</paper-item>
-          <paper-item item-name="7">July</paper-item>
-          <paper-item item-name="8">August</paper-item>
-          <paper-item item-name="9">September</paper-item>
-          <paper-item item-name="10">October</paper-item>
-          <paper-item item-name="11">November</paper-item>
-          <paper-item item-name="12">December</paper-item>
+        <paper-listbox slot="dropdown-content" class="dropdown-content" selected="{{ date.month }}" >
+          <paper-item >January</paper-item>
+          <paper-item >February</paper-item>
+          <paper-item >March</paper-item>
+          <paper-item >April</paper-item>
+          <paper-item >May</paper-item>
+          <paper-item >June</paper-item>
+          <paper-item >July</paper-item>
+          <paper-item >August</paper-item>
+          <paper-item >September</paper-item>
+          <paper-item >October</paper-item>
+          <paper-item >November</paper-item>
+          <paper-item >December</paper-item>
         </paper-listbox>
       </paper-dropdown-menu>
 

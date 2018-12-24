@@ -2,6 +2,7 @@
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../src/components/date-inputs.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-update-event">
@@ -43,25 +44,41 @@
     <div class="card">
         <form>
             <paper-input
+                required
+                auto-validate
+                error-message="Required field"
                 label="Event Name"
                 value="{{ event.name }}">
             </paper-input>
             <paper-input
+                required
+                auto-validate
+                error-message="Required field"
+                label="Organizer"
+                value="{{ event.organizer }}">
+            </paper-input>
+            <paper-input
+                required
+                auto-validate
+                maxlength="150"
+                error-message="This field must be 150 characters max."
                 label="Event Description"
                 value="{{ event.description }}">
             </paper-input>
             <paper-input
+                required
+                auto-validate
+                error-message="Required field"
+                required
                 label="Location"
                 value="{{ event.location }}">
             </paper-input>
             <paper-input
+                required
                 label="Category"
-                value="{{ event.category }}">
+                value="{{ event.category::input }}">
             </paper-input>
-            <paper-input
-                label="Date"
-                value="{{ event.date }}">
-            </paper-input>
+            <date-inputs on-date-changed="dateChanged"></date-inputs>  
             <paper-button toggles raised class="custom green" on-click="updateEvent"> Update Event </paper-button>
         </form>
     </div>
@@ -85,7 +102,13 @@
                     route: Object,
                     routeData: Object,
                     event: Object,
-                    id: Number
+                    id: Number,
+                    date: {
+                        type: Object,
+                        value: function() {
+                            return {}
+                        }
+                    }
                 };
             }
 
@@ -95,13 +118,21 @@
                 ];
             }
 
+            dateChanged(e) {
+               if(!e.detail.path) {
+                   return
+               }
+               this.set(e.detail.path, e.detail.value)
+            }
+
             getEventToUpdate (id) {
-                console.log(id)
                 this.id = id
                 this.$.getEvent.generateRequest()
             }
 
             updateEvent() {
+                var date = new Date(this.date.year, this.date.month, this.date.hour, this.date.mins)
+                this.set('event.date', date)
                 this.$.updateEvent.generateRequest()
             }
 

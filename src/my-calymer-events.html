@@ -29,11 +29,17 @@
                 overflow: auto;
             }
 
-            paper-button.green {
+            paper-button.red {
                 background-color: red;
                 color: white;
             }
             
+            paper-button.green {
+                background-color: green;
+                color: white;
+            }
+
+
         </style>
 
     <iron-ajax
@@ -58,12 +64,14 @@
 
     <div class="card">
         <template is="dom-repeat" items="[[ events ]]" as="event">
-            <h2>[[ event.name ]]</h2>
-            <p>[[ event.description ]]</p>
-            <a href$="/update-event/[[event.id]]">Update event</a>
-            <paper-button toggles raised class="custom green" on-click="dialogOpen" id="[[event.id]]">Delete event</paper-button>
-            <hr>
-        </template>
+                <h2>[[ event.name ]]</h2>
+                <a href$="/update-event/[[event.id]]">Update event</a>
+                <p>Location: [[ event.location ]]</p>
+                <p>[[ event.description ]]</p>
+                <a href$="/single-event/[[event.id]]"><paper-button toggles raised class="custom green">Go!</paper-button></a>
+                <paper-button toggles raised class="custom red" on-click="dialogOpen" id="[[event.id]]">Delete event</paper-button>
+                <hr>
+        </template>   
     </div>
 
     </template>
