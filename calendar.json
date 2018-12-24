@@ -1,10 +1,10 @@
 {
   "events": [
     {
-      "name": "madrid",
+      "name": "Tenis en madrid",
       "organizer": "alex",
-      "date": null,
-      "confirmations": 2,
+      "date": "2019-04-20T13:00:00.000Z",
+      "confirmations": 6,
       "id": 19,
       "description": "Evento actualizado",
       "location": "madrid"
@@ -12,11 +12,21 @@
     {
       "name": "Evento en barcelona",
       "organizer": "alex",
-      "date": null,
-      "confirmations": 2,
-      "id": 19,
+      "date": "2019-05-20T13:00:00.000Z",
+      "confirmations": 3,
+      "id": 21,
       "description": "Evento actualizado",
       "location": "barcelona"
+    },
+    {
+      "name": "Paseo por Montevideo",
+      "organizer": "Alejandro Capparelli",
+      "description": "Tour por montevideo",
+      "location": "Uruguay",
+      "category": "turismo",
+      "date": "2018-04-20T13:00:00.000Z",
+      "confirmations": "",
+      "id": 20
     }
   ]
 }

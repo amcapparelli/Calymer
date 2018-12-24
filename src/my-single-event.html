@@ -82,6 +82,8 @@
             getEventToShow(id) {
                 this.id = id
                 this.$.getEvent.generateRequest()
+                this.$.confirmationButton.removeAttribute('disabled')
+                this.$.declineButton.removeAttribute('disabled')
                
             }
 
