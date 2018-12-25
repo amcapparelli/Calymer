@@ -20,6 +20,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-spinner/paper-spinner-lite.html">
 <link rel="import" href="my-icons.html">
 
 <link rel="lazy-import" href="my-calymer-events.html">
@@ -67,6 +69,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         color: black;
         font-weight: bold;
       }
+
+      paper-spinner-lite.orange {
+        --paper-spinner-color: var(--google-yellow-500);
+        position: fixed;
+        top: 50%;
+        left: 50%;
+      }
+
     </style>
 
     <app-location
@@ -80,6 +90,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         data="{{routeData}}"
         tail="{{subroute}}">
     </app-route>
+
+    <iron-ajax
+        id="getAllEvents"
+        auto
+        url='http://localhost:3000/events'
+        last-response="{{ events }}" 
+        loading="{{ loading }}">
+    </iron-ajax>
+
+    <paper-spinner-lite
+      class="orange"
+      active="[[ loading ]]">
+    </paper-spinner-lite>
 
     <app-drawer-layout fullbleed narrow="{{narrow}}">
       <!-- Drawer content -->
@@ -106,7 +129,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             attr-for-selected="name"
             fallback-selection="view404"
             role="main">
-          <my-calymer-events name="calymer-events"></my-calymer-events>
+          <my-calymer-events name="calymer-events" events="[[events]]" loading></my-calymer-events>
           <my-create-event name="create-event"></my-create-event>
           <my-single-event name="single-event" route="[[subroute]]"></my-single-event>
           <my-update-event name="update-event"  route="[[subroute]]"></my-update-event>
@@ -136,6 +159,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           // This shouldn't be neccessary, but the Analyzer isn't picking up
           // Polymer.Element#rootPath
           rootPath: String,
+          events: Array,
+          loading: {
+              type: Boolean, 
+              value: true
+          },
         };
       }
 
@@ -143,6 +171,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         return [
           '_routePageChanged(routeData.page)',
         ];
+      }
+
+      ready() {
+        super.ready() 
+        this.addEventListener('event-updated', () => { this.$.getAllEvents.generateRequest() })
+        this.addEventListener('new-event-created', () => { this.$.getAllEvents.generateRequest() })
       }
 
       _routePageChanged(page) {

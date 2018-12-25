@@ -52,6 +52,13 @@
 
            postEventResponse() {
                this.$.toast.show('Great! You have created a new event!')
+               this.dispatchEvent(new CustomEvent('new-event-created', {
+                    bubbles: true,
+                    composed: true,
+                    detail: {
+                        
+                    }
+                }));
            }
 
            postEventError(error) {

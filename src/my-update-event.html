@@ -138,6 +138,13 @@
 
             updateEventResponse(e) {
                 this.$.toast.show('Success! Event Updated!')
+                this.dispatchEvent(new CustomEvent('event-updated', {
+                    bubbles: true,
+                    composed: true,
+                    detail: {
+                        
+                    }
+                }));
             }
 
             updateEventError(error) {
