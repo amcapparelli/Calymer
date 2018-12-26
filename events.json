@@ -1,59 +1,15 @@
 {
   "events": [
     {
-      "name": "Campanadas de Nochevieja",
+      "name": "Concierto de AC/DC",
       "organizer": "Gloria",
-      "description": "Tomar uvas con mis amigos",
-      "location": "Puerta del sol",
+      "description": "Concierto de U2 en londres",
+      "location": "Londres",
       "category": "Ocio",
-      "date": 1577746980000,
+      "date": null,
       "confirmations": "",
       "rejections": "",
       "id": 1
-    },
-    {
-      "name": "hola ",
-      "organizer": "esta es unan prueba ",
-      "description": "dfada lj",
-      "location": "picos de europa",
-      "category": "dfadad",
-      "date": 1578186300000,
-      "confirmations": "",
-      "rejections": "",
-      "id": 2
-    },
-    {
-      "name": "fsdfadfadf",
-      "organizer": "df",
-      "description": "f",
-      "location": "f",
-      "category": "f",
-      "date": 1549699260000,
-      "confirmations": "",
-      "rejections": "",
-      "id": 3
-    },
-    {
-      "name": "dfasdfad",
-      "organizer": "dfadfadf",
-      "description": "dfasdfadf",
-      "location": "fasdfad",
-      "category": "dfasdfad",
-      "date": 1675325280000,
-      "confirmations": "",
-      "rejections": "",
-      "id": 4
-    },
-    {
-      "name": "Funcionará??",
-      "organizer": "jkljlkdaf",
-      "description": "A ver a ver",
-      "location": "Nerja",
-      "category": "ocio",
-      "date": 1666520580000,
-      "confirmations": "",
-      "rejections": "",
-      "id": 5
     }
   ]
 }
