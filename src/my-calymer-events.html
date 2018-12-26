@@ -136,6 +136,11 @@
 
             deleteEventResponse() {
                console.log('event deleted')
+               this.dispatchEvent(new CustomEvent('event-deleted', {
+                    bubbles: true,
+                    composed: true,
+                    detail: {}
+               }));
             }
 
             deleteEventError(error) {

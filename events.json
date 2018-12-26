@@ -1,15 +1,6 @@
 {
   "events": [
     {
-      "name": "Evento en Barcelona 3",
-      "organizer": "alex",
-      "date": "2022-01-12T00:00:00.000Z",
-      "confirmations": 4,
-      "id": 21,
-      "description": "Evento actualizado",
-      "location": "barcelona"
-    },
-    {
       "name": "Paseo por Montevideo 10",
       "organizer": "Alejandro Capparelli",
       "description": "Tour por montevideo",
