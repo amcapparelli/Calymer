@@ -1,54 +1,45 @@
 {
   "events": [
     {
-      "name": "Paseo por Montevideo 10",
-      "organizer": "Alejandro Capparelli",
-      "description": "Tour por montevideo",
-      "location": "Uruguay",
-      "category": "turismo",
-      "date": null,
-      "confirmations": "",
-      "id": 20
-    },
-    {
       "name": "Evento 3",
       "organizer": "PEteco",
       "description": "peteco fiesta",
       "location": "madrid",
       "date": "2021-06-12T10:12:00.000Z",
-      "confirmations": "",
+      "confirmations": 2,
       "id": 22
-    },
-    {
-      "name": "Evento programacion",
-      "organizer": "Innoqua",
-      "description": "prorgamando ",
-      "location": "madrid",
-      "category": "programacion",
-      "date": "2020-09-01T10:30:00.000Z",
-      "confirmations": "",
-      "rejections": "",
-      "id": 24
-    },
-    {
-      "name": "evento 30",
-      "organizer": "fjsdklfjsdl",
-      "description": "sdkjsdklfj",
-      "location": "sdlfjsdkl",
-      "category": "zkfjdl",
-      "date": "2022-09-12T10:12:00.000Z",
-      "confirmations": "",
-      "rejections": "",
-      "id": 25
     },
     {
       "name": "evento 1000",
       "organizer": "djshdjksk",
       "description": "kfjlsd",
+      "location": "barcelona",
       "date": "2023-09-12T10:12:00.000Z",
       "confirmations": "",
       "rejections": "",
       "id": 26
+    },
+    {
+      "name": "prueba timestamp",
+      "organizer": "timestamp",
+      "description": "dkklsdfjakl",
+      "location": "Montevideo",
+      "category": "sdss",
+      "date": 1693476720000,
+      "confirmations": "",
+      "rejections": "",
+      "id": 27
+    },
+    {
+      "name": "prueba timestamp 2",
+      "organizer": "timestamp",
+      "description": "dkklsdfjakl",
+      "location": "Montevideo",
+      "category": "sdss",
+      "date": 1693390320000,
+      "confirmations": "",
+      "rejections": "",
+      "id": 28
     }
   ]
 }
