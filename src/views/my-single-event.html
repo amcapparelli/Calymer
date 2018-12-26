@@ -42,8 +42,9 @@
         <p>[[ event.description ]]</p>
         <show-date date="[[ event.date ]]"></show-date>
         <p>Asistants: [[ event.confirmations ]]</p>
-        <paper-button id="confirmationButton" on-click="confirmAssistance">Confirm</paper-button>
-        <paper-button id="declineButton" on-click="declineAssistance">Decline</paper-button>
+        <p>Rejections: [[ event.rejections ]]</p>
+        <paper-button toggles raised class="custom green" id="confirmationButton" on-click="confirmAssistance">Confirm</paper-button>
+        <paper-button toggles raised class="custom red" id="declineButton" on-click="declineAssistance">Decline</paper-button>
     </div>
 
     <paper-toast id="success"></paper-toast>
@@ -92,12 +93,18 @@
                 this.set('event.confirmations', parseInt(confirmations + 1))
                 this.$.confirmationButton.setAttribute('disabled', '')
                 this.$.declineButton.setAttribute('disabled', '')
+                this.$.confirmationButton.classList.remove('green')
+                this.$.declineButton.classList.remove('red')
                 this.$.updateConfirmations.generateRequest()
             }
 
             declineAssistance () {
-                this.$.declineButton.setAttribute('disabled', '')
+                const rejections = this.get('event.rejections')
+                this.set('event.rejections', parseInt(rejections + 1))
                 this.$.confirmationButton.setAttribute('disabled', '')
+                this.$.declineButton.setAttribute('disabled', '')
+                this.$.confirmationButton.classList.remove('green')
+                this.$.declineButton.classList.remove('red')
                 this.$.error.show('OK! you decline this event.')
             }
 

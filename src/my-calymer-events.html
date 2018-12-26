@@ -1,0 +1,139 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../src/components/show-date.html">
+<link rel="import" href="shared-styles.html">
+
+<dom-module id="my-calymer-events">
+    <template>
+        <style include="shared-styles">
+            :host {
+                display: block
+            }
+
+            a {
+                color: blue;
+                text-decoration: none;
+            }
+
+            paper-dialog.size-position {
+                position: fixed;
+                top: 16px;
+                right: 16px;
+                width: 300px;
+                height: 300px;
+                overflow: auto;
+            }
+
+
+        </style>
+
+
+    <iron-ajax
+        id="deleteEvent"
+        method="delete"
+        url='http://localhost:3000/events/[[id]]'
+        on-response="deleteEventResponse"
+        on-error="deleteEventError">
+    </iron-ajax>
+
+    <paper-dialog id="dialog">
+        <p>¿Seguro que quieres borrar este evento?</p>
+        <paper-button on-click="deleteEvent">Aceptar</paper-button>
+        <paper-button on-click="cancelDelete">Cancelar</paper-button>
+    </paper-dialog>
+
+    <div class="card">
+        
+        <paper-input
+            label="Find events in your city"
+            value="{{ city::input }}">
+        </paper-input>
+
+        <template is="dom-repeat" items="[[ events ]]" as="event" filter="[[filter(city)]]" sort="sortDates" >
+                <h2>[[ event.name ]]</h2>
+                <a href$="/update-event/[[event.id]]">Update event</a>
+                <p>Location: [[ event.location ]]</p>
+                <show-date date="[[ event.date ]]"></show-date>
+                <p>[[ event.description ]]</p>
+                <a href$="/single-event/[[event.id]]"><paper-button toggles raised class="custom green">Go!</paper-button></a>
+                <paper-button toggles raised class="custom red" on-click="dialogOpen" id="[[event.id]]">Delete event</paper-button>
+                <hr>
+        </template>   
+
+    </div>
+    </template>
+
+    <script>
+        
+        class MyCalymerEvents extends Polymer.Element {
+            
+            static get is() {
+                return 'my-calymer-events';
+            }
+           
+            static get properties() {
+                return {
+                    id: Number,
+                    city: String
+                };
+            }
+
+            sortDates(event1, event2) {
+                var date1 = event1.date
+                var date2 = event2.date
+                if (date1 < date2) {
+                    return -1;
+                }
+                if (date1 > date2) {
+                    return 1;
+                }
+                return 0;
+            }
+
+            filter(city) {
+                if (!city) {
+                    return null;
+                } else {
+                    city = city.toLowerCase();
+                    return function(event) {
+                        var location = event.location.toLowerCase();
+                        return (location.indexOf(city) != -1) 
+                    }
+                }
+            }
+    
+            dialogOpen (e) {
+                const id = e.target.getAttribute('id')
+                this.id = id
+                this.$.dialog.open()
+            }
+
+            cancelDelete () {
+                this.$.dialog.close()
+            }
+
+            deleteEvent() {
+                this.$.deleteEvent.generateRequest()
+                this.$.dialog.close()
+            }
+
+            deleteEventResponse() {
+               this.dispatchEvent(new CustomEvent('event-deleted', {
+                    bubbles: true,
+                    composed: true,
+                    detail: {}
+               }));
+            }
+
+            deleteEventError(error) {
+               console.log('There was an error deleting the event', error.detail.error)
+            }
+
+        }
+
+        window.customElements.define(MyCalymerEvents.is, MyCalymerEvents);
+    </script>
+</dom-module>
