@@ -56,7 +56,11 @@
             value: function() {
               return {
                 'es': function(date) {
-                  return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;
+                    let hours = (date.getHours());
+                    let hh = hours < 10 ? ('0'+ hours) : hours;
+                    let mins = date.getMinutes();
+                    let mm = mins < 10 ?('0'+ mins) : mins;
+                    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${hh}:${mm}`;
                 },
                 'en': function(date) {
                   return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;                  
@@ -67,6 +71,8 @@
         };
       }
     
+
+      //(D=this.getDate())<10?('0'+D):D;
       /**
       * This method returns a date formated string
       * It shoud recibe a timestamp (miliseconds) an a valid format string (ie: 'es')
