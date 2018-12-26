@@ -2,7 +2,6 @@
 <link rel="import" href="../../bower_components/flippy-card/flippy-card.html">
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../components/event-map.html">
-
 <link rel="import" href="../theme/shared-styles.html">
 <link rel="import" href="../theme/card-styles.html">
 
@@ -59,7 +58,6 @@
             </thumbnail>
             <info>
                 <h2>[[event.name]]</h2>
-                <show-date date="[[ event.date ]]"></show-date>
                 <span>[[getEventDate(event.date)]]</span>
             </info>
           </column>
@@ -96,6 +94,10 @@
         }
       }
 
+       /** This method recives timestamp and transforms it into formatted string
+       * @param {Number} timestamp
+       * @return {String} Readable date and time 
+       */
       getEventDate(timestamp){
         
         let date = new Date(timestamp)
@@ -135,6 +137,10 @@
         `${Math.floor(minutes/60)}h ${minutes%60}m`
       }
       
+       /** This method shows icons depending on event category
+       * @param {String} eventType
+       * @return {String} string to set icon attribute 
+       */
       getIconType(eventType){
         switch(eventType){
           case("arts"): return "image:palette"
@@ -147,26 +153,42 @@
         }
       }
 
+       /** This method changes flip card state and calls <flippy-card> flip method
+       * 
+       */
+
       flipit() {
         this.flipped = !this.flipped;
         this.$.thecard.flip();
       }
 
+      /** This method calls dialog pop up to confirm or discard event deletion
+       * 
+       */
       dialogOpen(e) {
-                const id = e.target.getAttribute('id')
-                this.id = id
-                this.$.dialog.open()
-            }
+        const id = e.target.getAttribute('id')
+        this.id = id
+        this.$.dialog.open()
+      }
 
+      /** Close dialog pop up if user discards event deletion
+       * 
+       */
       cancelDelete() {
           this.$.dialog.close()
       }
-
+      
+      /** generate delete request to api and deletes event
+       * 
+       */
       deleteEvent() {
           this.$.deleteEvent.generateRequest()
           this.$.dialog.close()
       }
 
+      /** dispatches custom event to inform the main component when event is deleted
+       * 
+       */
       deleteEventResponse() {
           this.dispatchEvent(new CustomEvent('event-deleted', {
             bubbles: true,
@@ -178,6 +200,9 @@
           console.log('event deleted')
       }
 
+      /** informs if delete request couldn´t be performed
+       * 
+       */
       deleteEventError(error) {
           console.log('There was an error deleting the event', error.detail.error)
       }

@@ -66,6 +66,12 @@
           place: String
         };
       }
+
+      /** changes flippy-card container
+       * @param {Boolean} flipped
+       * @return {String} class name for <event-map>
+       */
+      
       getClass(flipped) {
         return this.flipped ? "show" : "hide";
       }

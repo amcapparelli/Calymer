@@ -1,9 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
-
 <link rel="import" href="../components/date-inputs.html">
-
 <link rel="import" href="../theme/shared-styles.html">
 
 <dom-module id="create-event-form">
@@ -101,7 +99,10 @@
                     }
             };
         }
-            
+            /** gets date property when new input added and sets event.date with key and value
+             * @param {Object} event 
+             */
+
             dateChanged(e) {
                if(!e.detail.path) {
                    return
@@ -109,6 +110,9 @@
                this.set(e.detail.path, e.detail.value)
             }
 
+            /** gets compelete date property and transfomrs it into timestamp. Then dispatches custom event to inform parent component
+             * @param {Object} e 
+             */
             createEvent(e) {
                 e.preventDefault()
                 var date = new Date(this.date.year, this.date.month, this.date.day, this.date.hour, this.date.mins)

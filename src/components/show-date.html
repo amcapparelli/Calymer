@@ -1,42 +1,92 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 
 <dom-module id="show-date">
-    <template>
-        <style>
-            :host {
-                display: block
+  <template>
+    <style>
+      :host {
+        display: inline;
+      }
+    </style>
+    
+    <p>When: [[date]]</p>
+  </template>
+
+  <script>
+    
+    class ShowDate extends (class extends Polymer.Element {}) {
+      static get is() { return 'show-date'; }
+      static get properties() {
+        return {
+          /**
+          * The timestamp (miliseconds) of the date to display
+          * @type {Number}
+          */
+          timestamp: {
+            type: Number
+          },
+          /**
+          * The formated date to display
+          * @type {String}
+          */
+          date: {
+            type: String,
+            value: '',
+            readOnly: true,
+            computed: 'timestampToString(timestamp, format)'
+          },
+          /**
+          * The format to apply to this date.
+          * Current valid formats: 'en', 'es' (default "en")
+          * @type {String}
+          */
+          format: {
+            type: String,
+            value: 'en'
+          },
+          /**
+          * This is an object to setup the functions to the date format.
+          * It Should have a method to any valid format. The method name is the string set by the format property
+          * @type {Object}
+          */
+          formatFunctions: {
+            type: Object,
+            readOnly: true,
+            value: function() {
+              return {
+                'es': function(date) {
+                    let hours = (date.getHours());
+                    let hh = hours < 10 ? ('0'+ hours) : hours;
+                    let mins = date.getMinutes();
+                    let mm = mins < 10 ?('0'+ mins) : mins;
+                    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()} ${hh}:${mm}`;
+                },
+                'en': function(date) {
+                  return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`;                  
+                }
+              };
             }
-        </style>
-
-        <p> When: [[ date ]]</p>
-    </template>
-
-    <script>
-        
-        class ShowDate extends Polymer.Element {
-            
-            static get is() {
-                return 'show-date';
-            }
-
-            static get properties() {
-                return {
-                    date: String
-                };
-            }
-
-           static get observers() {
-               return [
-                   'dateRecibed(date)'
-               ];
-           }
-
-           dateRecibed(date) {
-                const dateString = new Date(date).toDateString()
-                this.date = dateString
-           }
+          }
+        };
+      }
+    
+      /**
+      * This method returns a date formated string
+      * It shoud recibe a timestamp (miliseconds) an a valid format string (ie: 'es')
+      * @param {Number} timestamp timestamp to set
+      * @param {string} format format to set ('es', 'en')
+      * @return {String} formated string
+      */
+      timestampToString(timestamp, format) {
+        if(!timestamp) {
+          return '';
         }
-
-        window.customElements.define(ShowDate.is, ShowDate);
-    </script>
+        if(! this.formatFunctions[format]) {
+          return 'Invalid format';
+        }
+        let date = new Date(timestamp);
+        return this.formatFunctions[format](date);
+      }
+    }
+    window.customElements.define(ShowDate.is, ShowDate);
+  </script>
 </dom-module>

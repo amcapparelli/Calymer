@@ -46,7 +46,9 @@
                 };
             
             
-        /* Post new event */
+            /** This method sends a post request to API to create a new event
+             * @param {Object} event
+            */
            postEvent(e) {
                // get all event details from create-event-form component inputs
                this.event = e.detail
@@ -58,7 +60,8 @@
                this.$.postEvent.generateRequest()
            }
 
-           /* Post success response */
+           /** This method dispatches a custom event when new event is created to inform main component
+           */
            postEventResponse() {
                // Show success message to user
                this.$.toast.show('Great! You have created a new event!')
@@ -72,6 +75,8 @@
                 }));
            }
 
+            /** This method sends an error message to user when new post event fails
+           */
            postEventError(error) {
                this.$.toastError.show('Sorry, couldn´t create your event. Try again later!')
                console.log('There was an error creating the event', error.detail.error)

@@ -3,12 +3,8 @@
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
-
-
 <link rel="import" href="../components/event-card.html">
 <link rel="import" href="../components/event-map.html">
-<link rel="import" href="../components/show-date.html">
-
 <link rel="import" href="../theme/card-styles.html">
 
 <dom-module id="my-calymer-events">
@@ -90,6 +86,7 @@
 
             static get properties() {
                 return {
+                    
                     id: Number,
                     city: String,
                     events: Array,
@@ -97,6 +94,12 @@
                     event: Object
                 };
             }
+
+            /** This method compares each event date and returns an Array starting with most recent ones
+             * @param {Number} event1
+             * @param {Number} event2
+             * @return {Number} if returned value is -1 event1 is more recent
+            */
 
             sortDates(event1, event2) {
                 var date1 = event1.date
@@ -110,6 +113,11 @@
                 return 0;
             }
 
+            /** This method filters the events array by location
+             * @param {String} city
+             * @return {Array} when city matches event location 
+            */
+
             filter(city) {
                 if (!city) {
                     return null;
@@ -121,7 +129,6 @@
                     }
                 }
             }
-
             
         }
 

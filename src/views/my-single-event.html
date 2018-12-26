@@ -40,7 +40,7 @@
         <h3>Organizer: [[ event.organizer ]]</h3>
         <span> Location: [[ event.location ]]</span>
         <p>[[ event.description ]]</p>
-        <show-date date="[[ event.date ]]"></show-date>
+        <show-date timestamp="[[ event.date ]]" format="es"></show-date>
         <p>Asistants: [[ event.confirmations ]]</p>
         <p>Rejections: [[ event.rejections ]]</p>
         <paper-button toggles raised class="custom green" id="confirmationButton" on-click="confirmAssistance">Confirm</paper-button>
@@ -80,6 +80,9 @@
                 ];
             }
 
+            /** This method makes a get request to API to show a single event
+             * @param {Number} id
+            */
             getEventToShow(id) {
                 this.id = id
                 this.$.getEvent.generateRequest()
@@ -88,6 +91,9 @@
                
             }
 
+            /** This method adds a +1 to confirmations field of event object
+             * @param {Number} id
+            */
             confirmAssistance () {
                 const confirmations = this.get('event.confirmations')
                 this.set('event.confirmations', parseInt(confirmations + 1))
@@ -98,6 +104,9 @@
                 this.$.updateConfirmations.generateRequest()
             }
 
+            /** This method adds a +1 to rejections field of event object
+             * @param {Number} id
+            */
             declineAssistance () {
                 const rejections = this.get('event.rejections')
                 this.set('event.rejections', parseInt(rejections + 1))
@@ -108,10 +117,14 @@
                 this.$.error.show('OK! you decline this event.')
             }
 
+            /** This method sends a success message to user
+            */
             updateConfirmationsResponse() {
                 this.$.success.show('Thank you! I have been confirmed!')
             }
 
+            /** This method sends an error message to user
+            */
             updateConfirmationsError(error) {
                 this.$.error.show('Sorry, your assistance couldnt be confirmed')
                 console.log('sorry, your assistance couldnt be confirmed', error)

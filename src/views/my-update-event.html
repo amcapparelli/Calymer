@@ -118,6 +118,9 @@
                 ];
             }
 
+            /** This method sends a success message to user
+             * @param {Number} id
+            */
             dateChanged(e) {
                if(!e.detail.path) {
                    return
@@ -125,17 +128,25 @@
                this.set(e.detail.path, e.detail.value)
             }
 
+            /** This method makes a get request to API to get the event to update
+             * @param {Number} id
+            */
             getEventToUpdate (id) {
                 this.id = id
                 this.$.getEvent.generateRequest()
             }
 
+            /** This method sends a put request to API whth event to update
+            */
             updateEvent() {
                 var date = new Date(this.date.year, this.date.month, this.date.hour, this.date.mins)
                 this.set('event.date', date)
                 this.$.updateEvent.generateRequest()
             }
 
+            /** This method dispatches a custom event to inform the main component when event updated
+             * @param {object} event
+            */
             updateEventResponse(e) {
                 this.$.toast.show('Success! Event Updated!')
                 this.dispatchEvent(new CustomEvent('event-updated', {
@@ -147,6 +158,8 @@
                 }));
             }
 
+            /** This method sends an error message to user
+            */
             updateEventError(error) {
                 this.$.toastError.show('Sorry, couldn´t update your event. Try again later.')
                 console.log('There was an error updating event', error.detail.error)
