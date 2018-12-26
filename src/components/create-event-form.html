@@ -2,7 +2,7 @@
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
-<link rel="import" href="components/date-inputs.html">
+<link rel="import" href="../components/date-inputs.html">
 
 <link rel="import" href="../theme/shared-styles.html">
 
@@ -46,10 +46,29 @@
                 label="Location"
                 value="{{ event.location::input }}">
             </paper-input>
+
             <paper-input
-                label="Category"
-                value="{{ event.category::input }}">
+                required
+                auto-validate
+                type="number"
+                max="1440"
+                error-message="Required field. Max 1440 minutes"
+                label="Duration (in minutes, max 1440)"
+                value="{{ event.minutes::input }}">
             </paper-input>
+
+            <paper-dropdown-menu vertical-align="bottom" horizontal-align="left" label="Category">
+                    <paper-listbox slot="dropdown-content" class="dropdown-content" attr-for-selected="item-name" selected="{{ event.category }}" >
+                      <paper-item item-name="arts">Arts</paper-item>
+                      <paper-item item-name="business">Business</paper-item>
+                      <paper-item item-name="classes">Classes</paper-item>
+                      <paper-item item-name="parties">Parties</paper-item>
+                      <paper-item item-name="music">Music</paper-item>
+                      <paper-item item-name="sports & wellness">Sports & Wellness</paper-item>
+                      <paper-item item-name="food & drink">Food & Drink</paper-item>
+                    </paper-listbox>
+            </paper-dropdown-menu>
+
             <date-inputs on-date-changed="dateChanged"></date-inputs>  
             <paper-button on-click="createEvent">Create Event </paper-button>
         </form>

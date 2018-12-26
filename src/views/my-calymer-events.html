@@ -33,11 +33,6 @@
                 font-family: 'Fira Sans Ultra', 'Roboto', 'Noto', sans-serif
             }
 
-            a {
-                color: blue;
-                text-decoration: none;
-            }
-
             h2 {
                 color: var(--paper-green-500);
             }
@@ -51,15 +46,7 @@
                 overflow: auto;
             }
 
-            paper-button.red {
-                background-color: red;
-                color: white;
-            }
-
-            paper-button.green {
-                background-color: green;
-                color: white;
-            }
+           
         </style>
 
         <iron-ajax 
@@ -68,10 +55,6 @@
             last-response="{{events}}" 
             loading="{{loading}}">
         </iron-ajax>
-
-
-
-
 
         <container>
             <section>
@@ -89,8 +72,9 @@
                     items="[[events]]"
                     filter="[[filter(city)]]" 
                     sort="sortDates"
+                    as="event"
                 >
-                    <event-card event="[[item]]"></event-card>
+                    <event-card event="[[event]]"></event-card>
                 </template>
             </section>
         </container>
