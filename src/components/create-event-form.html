@@ -91,6 +91,7 @@
             createEvent(e) {
                 e.preventDefault()
                 var date = new Date(this.date.year, this.date.month, this.date.day, this.date.hour, this.date.mins)
+                date = date.getTime()
                 this.event.date = date
                 this.dispatchEvent(new CustomEvent('new-event-created', {
                     detail: this.event
