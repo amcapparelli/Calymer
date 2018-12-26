@@ -92,14 +92,60 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <!-- Add any global styles for body, document, etc. -->
     <style>
-      body {
-        margin: 0;
-        font-family: 'Roboto', 'Noto', sans-serif;
-        line-height: 1.5;
-        min-height: 100vh;
-        background-color: #eeeeee;
-      }
-    </style>
+        @font-face {
+          font-family: 'Fira Sans Semibold';
+          src: url('fonts/firasans-semibold-webfont.woff2') format('woff2'),
+                url('fonts/firasans-semibold-webfont.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+        }
+  
+        @font-face {
+          font-family: 'Fira Sans Semibold Italic';
+          src: url('fonts/firasans-semibolditalic-webfont.woff2') format('woff2'),
+                url('fonts/firasans-semibolditalic-webfont.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+        }
+  
+        @font-face {
+          font-family: 'Fira Sans Ultra';
+          src: url('fonts/firasans-ultra-webfont.woff2') format('woff2'),
+                url('fonts/firasans-ultra-webfont.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+        }
+  
+        @font-face {
+          font-family: 'Fira Sans Ultra Italic';
+          src: url('fonts/firasans-ultraitalic-webfont.woff2') format('woff2'),
+                url('fonts/firasans-ultraitalic-webfont.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+        }
+        @font-face {
+          font-family: 'Fira Sans Light';
+          src: url('fonts/firasans-light-webfont.woff2') format('woff2'),
+              url('fonts/firasans-light-webfont.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+        }
+        @font-face {
+          font-family: 'Fira Sans Light_italic';
+          src: url('fonts/firasans-lightitalic-webfont.woff2') format('woff2'),
+              url('fonts/firasans-lightitalic-webfont.woff') format('woff');
+          font-weight: normal;
+          font-style: normal;
+        }
+  
+        body {
+          margin: 0;
+          font-family: 'Fira Sans Light', 'Roboto', 'Noto', sans-serif;
+          line-height: 1.5;
+          min-height: 100vh;
+          background-color: #2d2e3a;
+        }
+      </style>
   </head>
   <body>
     <my-app></my-app>

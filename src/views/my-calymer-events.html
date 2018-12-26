@@ -1,0 +1,147 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+
+
+<link rel="import" href="../components/event-card.html">
+<link rel="import" href="../components/event-map.html">
+<link rel="import" href="../components/show-date.html">
+
+<link rel="import" href="../theme/card-styles.html">
+
+<dom-module id="my-calymer-events">
+    <template>
+        <style include="card-styles">
+            :host {
+                display: block
+            }
+            container{
+                display:flex;
+                flex-direction: column;
+            }
+            section {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                width: 80vw;
+            }
+
+            h1 {
+                color: white;
+                font-family: 'Fira Sans Ultra', 'Roboto', 'Noto', sans-serif
+            }
+
+            a {
+                color: blue;
+                text-decoration: none;
+            }
+
+            h2 {
+                color: var(--paper-green-500);
+            }
+
+            paper-dialog.size-position {
+                position: fixed;
+                top: 16px;
+                right: 16px;
+                width: 300px;
+                height: 300px;
+                overflow: auto;
+            }
+
+            paper-button.red {
+                background-color: red;
+                color: white;
+            }
+
+            paper-button.green {
+                background-color: green;
+                color: white;
+            }
+        </style>
+
+        <iron-ajax 
+            url="http://localhost:3000/events" 
+            auto 
+            last-response="{{events}}" 
+            loading="{{loading}}">
+        </iron-ajax>
+
+
+
+
+
+        <container>
+            <section>
+                <container>
+                    <h1>Events</h1>
+                    <paper-input label="Find events in your city" value="{{ city::input }}">
+                </container>
+            </paper-input>
+            </section>
+
+            <section>
+                <template
+                    class="container"
+                    is="dom-repeat"
+                    items="[[events]]"
+                    filter="[[filter(city)]]" 
+                    sort="sortDates"
+                >
+                    <event-card event="[[item]]"></event-card>
+                </template>
+            </section>
+        </container>
+
+    </template>
+
+    <script>
+
+        class MyCalymerEvents extends Polymer.Element {
+
+            static get is() {
+                return 'my-calymer-events';
+            }
+
+            static get properties() {
+                return {
+                    id: Number,
+                    city: String,
+                    events: Array,
+                    loading: Boolean,
+                    event: Object
+                };
+            }
+
+            sortDates(event1, event2) {
+                var date1 = event1.date
+                var date2 = event2.date
+                if (date1 < date2) {
+                    return -1;
+                }
+                if (date1 > date2) {
+                    return 1;
+                }
+                return 0;
+            }
+
+            filter(city) {
+                if (!city) {
+                    return null;
+                } else {
+                    city = city.toLowerCase();
+                    return function (event) {
+                        var location = event.location.toLowerCase();
+                        return (location.indexOf(city) != -1)
+                    }
+                }
+            }
+
+            
+        }
+
+        window.customElements.define(MyCalymerEvents.is, MyCalymerEvents);
+    </script>
+</dom-module>
