@@ -1,63 +1,59 @@
 {
   "events": [
     {
-      "name": "Evento en Barcelona 3",
-      "organizer": "alex",
-      "date": "2022-01-12T00:00:00.000Z",
-      "confirmations": 4,
-      "id": 21,
-      "description": "Evento actualizado",
-      "location": "barcelona"
-    },
-    {
-      "name": "Paseo por Montevideo 10",
-      "organizer": "Alejandro Capparelli",
-      "description": "Tour por montevideo",
-      "location": "Uruguay",
-      "category": "turismo",
-      "date": null,
-      "confirmations": "",
-      "id": 20
-    },
-    {
-      "name": "Evento 3",
-      "organizer": "PEteco",
-      "description": "peteco fiesta",
-      "location": "madrid",
-      "date": "2021-06-12T10:12:00.000Z",
-      "confirmations": "",
-      "id": 22
-    },
-    {
-      "name": "Evento programacion",
-      "organizer": "Innoqua",
-      "description": "prorgamando ",
-      "location": "madrid",
-      "category": "programacion",
-      "date": "2020-09-01T10:30:00.000Z",
+      "name": "Campanadas de Nochevieja",
+      "organizer": "Gloria",
+      "description": "Tomar uvas con mis amigos",
+      "location": "Puerta del sol",
+      "category": "Ocio",
+      "date": 1577746980000,
       "confirmations": "",
       "rejections": "",
-      "id": 24
+      "id": 1
     },
     {
-      "name": "evento 30",
-      "organizer": "fjsdklfjsdl",
-      "description": "sdkjsdklfj",
-      "location": "sdlfjsdkl",
-      "category": "zkfjdl",
-      "date": "2022-09-12T10:12:00.000Z",
+      "name": "hola ",
+      "organizer": "esta es unan prueba ",
+      "description": "dfada lj",
+      "location": "picos de europa",
+      "category": "dfadad",
+      "date": 1578186300000,
       "confirmations": "",
       "rejections": "",
-      "id": 25
+      "id": 2
     },
     {
-      "name": "evento 1000",
-      "organizer": "djshdjksk",
-      "description": "kfjlsd",
-      "date": "2023-09-12T10:12:00.000Z",
+      "name": "fsdfadfadf",
+      "organizer": "df",
+      "description": "f",
+      "location": "f",
+      "category": "f",
+      "date": 1549699260000,
       "confirmations": "",
       "rejections": "",
-      "id": 26
+      "id": 3
+    },
+    {
+      "name": "dfasdfad",
+      "organizer": "dfadfadf",
+      "description": "dfasdfadf",
+      "location": "fasdfad",
+      "category": "dfasdfad",
+      "date": 1675325280000,
+      "confirmations": "",
+      "rejections": "",
+      "id": 4
+    },
+    {
+      "name": "Funcionará??",
+      "organizer": "jkljlkdaf",
+      "description": "A ver a ver",
+      "location": "Nerja",
+      "category": "ocio",
+      "date": 1666520580000,
+      "confirmations": "",
+      "rejections": "",
+      "id": 5
     }
   ]
 }

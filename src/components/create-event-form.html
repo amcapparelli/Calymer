@@ -12,46 +12,45 @@
             }
         </style>
 
-    
-    <div class="card">
-        <form >
-            <paper-input
-                required
-                auto-validate
-                error-message="Required field"
-                label="Event Name"
-                value="{{ event.name::input }}">
-            </paper-input>
-            <paper-input
-                required
-                auto-validate
-                error-message="Required field"
-                label="Organizer"
-                value="{{ event.organizer::input }}">
-            </paper-input>
-            <paper-input
-                required
-                auto-validate
-                maxlength="150"
-                error-message="Required field (150 characters max)."
-                label="Event Description (150 characters max)"
-                value="{{ event.description::input }}">
-            </paper-input>
-            <paper-input
-                required
-                auto-validate
-                error-message="Required field"
-                label="Location"
-                value="{{ event.location::input }}">
-            </paper-input>
-            <paper-input
-                label="Category"
-                value="{{ event.category::input }}">
-            </paper-input>
-            <date-inputs on-date-changed="dateChanged"></date-inputs>  
-            <paper-button on-click="createEvent">Create Event </paper-button>
-        </form>
-    </div>
+        <div class="card">
+            <form >
+                <paper-input
+                    required
+                    auto-validate
+                    error-message="Required field"
+                    label="Event Name"
+                    value="{{ event.name::input }}">
+                </paper-input>
+                <paper-input
+                    required
+                    auto-validate
+                    error-message="Required field"
+                    label="Organizer"
+                    value="{{ event.organizer::input }}">
+                </paper-input>
+                <paper-input
+                    required
+                    auto-validate
+                    maxlength="150"
+                    error-message="Required field (150 characters max)."
+                    label="Event Description (150 characters max)"
+                    value="{{ event.description::input }}">
+                </paper-input>
+                <paper-input
+                    required
+                    auto-validate
+                    error-message="Required field"
+                    label="Location"
+                    value="{{ event.location::input }}">
+                </paper-input>
+                <paper-input
+                    label="Category"
+                    value="{{ event.category::input }}">
+                </paper-input>
+                <date-inputs on-date-changed="dateChanged"></date-inputs>  
+                <paper-button on-click="createEvent">Create Event </paper-button>
+            </form>
+        </div>
 
     </template>
 
@@ -90,9 +89,9 @@
 
             createEvent(e) {
                 e.preventDefault()
-                var date = new Date(this.date.year, this.date.month, this.date.day, this.date.hour, this.date.mins)
-                date = date.getTime()
-                this.event.date = date
+                let date = new Date(this.date.year, this.date.month, this.date.day, this.date.hour, this.date.mins)
+                let timestamp = date.getTime();
+                this.event.date = timestamp;
                 this.dispatchEvent(new CustomEvent('new-event-created', {
                     detail: this.event
                 }));

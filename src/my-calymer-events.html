@@ -70,7 +70,7 @@
                 <h2>[[ event.name ]]</h2>
                 <a href$="/update-event/[[event.id]]">Update event</a>
                 <p>Location: [[ event.location ]]</p>
-                <show-date date="[[ event.date ]]"></show-date>
+                <show-date timestamp="[[ event.date ]]" format="es"></show-date>
                 <p>[[ event.description ]]</p>
                 <a href$="/single-event/[[event.id]]"><paper-button toggles raised class="custom green">Go!</paper-button></a>
                 <paper-button toggles raised class="custom red" on-click="dialogOpen" id="[[event.id]]">Delete event</paper-button>
