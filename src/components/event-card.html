@@ -2,7 +2,6 @@
 <link rel="import" href="../../bower_components/flippy-card/flippy-card.html">
 <link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../components/event-map.html">
-<link rel="import" href="../theme/shared-styles.html">
 <link rel="import" href="../theme/card-styles.html">
 
 <dom-module id="event-card">
@@ -12,24 +11,12 @@
         width:25%;
         min-width: 380px;
       }
-
-      paper-button.white {
-                background-color: white;
-                color: black;
-                margin-bottom: 5px;
-            }
-
-      a {
-        color: inherit;
-        text-decoration: none;
-      }
-
     </style>
 
     <iron-ajax 
       id="deleteEvent" 
       method="delete" 
-      url='http://localhost:3000/events/[[id]]' 
+      url="http://localhost:3000/events/[[id]]"
       on-response="deleteEventResponse"
       on-error="deleteEventError">
     </iron-ajax>
@@ -57,7 +44,8 @@
               <iron-icon icon="[[iconName]]" class="eventType"></iron-icon>
             </thumbnail>
             <info>
-                <h2>[[event.name]]</h2>
+                <h2>[[shorten(event.name)]]</h2>
+                <span>[[event.location]]</span>
                 <span>[[getEventDate(event.date)]]</span>
             </info>
           </column>
@@ -65,12 +53,12 @@
       </div>
 
       <div slot="back" id="back" class$="[[event.category]]">
-        <info on-click="zoomCard">
-          <h2>[[event.name]]</h2>
-          <!-- <span>[[event.location]]</span> -->
-          <paper-button toggles raised class="custom white"><a href$="/update-event/[[event.id]]">Update event</a></paper-button>
-          <paper-button toggles raised class="custom white"><a href$="/single-event/[[event.id]]">See Event!</a></paper-button>
-          <paper-button toggles raised class="custom white" on-click="dialogOpen" id="[[event.id]]">Delete event</paper-button>
+        <info>
+          <h2>[[shorten(event.name)]]</h2>
+
+          <paper-button toggles raised class="custom green"><a href$="/update-event/[[event.id]]">Update event</a></paper-button>
+          <paper-button toggles raised class="custom blue"><a href$="/single-event/[[event.id]]">See Event!</a></paper-button>
+          <paper-button toggles raised class="custom red" on-click="dialogOpen" id="[[event.id]]">Delete event</paper-button>
         </info>
         <event-map flipped="[[flipped]]" place="[[event.location]]"></event-map>
       </div>
@@ -131,10 +119,13 @@
         return `${DW}, ${M} ${D} ${YYYY}, ${T.slice(0,-3)}`
       }
       getHours(minutes){
-        //If full hour, show only hour
-        return (minutes%60 == 0) ? 
-        `${Math.floor(minutes/60)}h` : 
-        `${Math.floor(minutes/60)}h ${minutes%60}m`
+        //If full day, show only day
+        return (minutes%1440 == 0) ? 
+        `${Math.floor(minutes/1440)}d`:
+          // If full hour, show only hour
+          (minutes%60 == 0) ? 
+            `${Math.floor(minutes/60)}h` : 
+            `${Math.floor(minutes/60)}h ${minutes%60}m`
       }
       
        /** This method shows icons depending on event category
@@ -162,6 +153,18 @@
         this.$.thecard.flip();
       }
 
+       /** This method calls dialog pop up to confirm or discard event deletion
+       * @param {String} - name of the event
+       * @return {String} - shortened name of the event
+       */
+      shorten(name){
+        //  Temporary version that shortens to 25 chars
+        let temp = name.slice(0, 24)
+        //  Shortened version that removes all chars after last space and adds 3 dots
+        let shorter = temp.trimRight().slice(0, temp.lastIndexOf(" "))+"..."
+        
+        return (name.length > 30) ? shorter : name
+      }
       /** This method calls dialog pop up to confirm or discard event deletion
        * 
        */

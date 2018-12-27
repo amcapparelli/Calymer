@@ -24,9 +24,10 @@
         on-response="postEventResponse"
         on-error="postEventError">
     </iron-ajax>
+    
 
     <create-event-form on-new-event-created="postEvent"></create-event-form>
-
+    
     <paper-toast id="toast"></paper-toast>
     <paper-toast id="toastError"></paper-toast>
     </template>
@@ -53,9 +54,9 @@
                // get all event details from create-event-form component inputs
                this.event = e.detail
                // add an empty 'confirmations' field
-               this.event.confirmations = '' 
+               this.event.confirmations = 0 
                // add an empty 'rejections' field
-               this.event.rejections = ''
+               this.event.rejections = 0
                // generate post request to API
                this.$.postEvent.generateRequest()
            }

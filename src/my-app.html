@@ -23,9 +23,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../bower_components/paper-spinner/paper-spinner-lite.html">
 <link rel="import" href="../bower_components/polymer/lib/elements/dom-repeat.html">
-<link rel="import" href="theme/my-icons.html">
 <link rel="import" href="../bower_components/iron-component-page/iron-component-page.html">
 
+<link rel="import" href="theme/shared-styles.html">
+<link rel="import" href="theme/my-icons.html">
 
 <link rel="lazy-import" href="my-calymer-events.html">
 <link rel="lazy-import" href="my-create-event.html">
@@ -35,9 +36,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <dom-module id="my-app">
   <template>
-    <style>
+    <style include="shared-styles">
       :host {
-        --app-primary-color: #4285f4;
+        --app-primary-color: #75afb3;
         --app-secondary-color: black;
 
         display: block;

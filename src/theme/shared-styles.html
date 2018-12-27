@@ -17,6 +17,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       .card {
         margin: 24px;
         padding: 16px;
+        max-width: 960px;
         color: #757575;
         border-radius: 5px;
         background-color: #fff;
@@ -34,13 +35,46 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-size: 30px;
         line-height: 64px;
       }
-
+      paper-button{
+        margin: 10px auto;
+      }
+      paper-button{
+        background-blend-mode: soft-light;
+      }
+      paper-toast{
+        z-index: 999;
+      }
+      container{
+        display:flex;
+        flex-direction: column;
+      }
+      section {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        max-width: 100%;
+        margin: auto;
+      }
+      column{
+        display:block;
+        flex: 1
+      }
       h1 {
+        font-family: 'Fira Sans Ultra', 'Roboto', 'Noto', sans-serif;
         margin: 16px 0;
         color: #212121;
-        font-size: 22px;
+        font-size: 42px;
       }
-
+      div[main-title]{
+        font-family: 'Fira Sans Ultra', 'Roboto', 'Noto', sans-serif;
+        margin: 16px 0;
+        font-size: 42px;
+        text-shadow:  -1px -1px 0 #000,  
+                      1px -1px 0 #000,
+                      -1px 1px 0 #000,
+                      1px 1px 0 #000;
+      }
+ 
       h2 {
         color:var(--paper-green-500); 
       }
@@ -54,7 +88,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: green;
         color: white;
       }
-
+      paper-button.blue {
+        background-color: rgb(22, 38, 175);
+        color: white;
+      }
     </style>
   </template>
 </dom-module>

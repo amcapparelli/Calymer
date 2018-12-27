@@ -9,87 +9,87 @@
     <template>
         <style>
             :host {
-                display: block
-            }
-
-            .date-fields {
                 display: flex;
+                flex-direction: column;
+            }
+            .time, .date {
+                display:flex;
                 flex-direction: row;
-                align-items: center;
-                justify-content: space-evenly;
+                justify-content: start;
+                flex-wrap: wrap;
             }
-            .date-fields > * {
-                width: 25%;
+            .time > *, .date > * {
+                width : 100px;
+                margin-right: 2em;
             }
-           
 
         </style>
 
-    <div class="dates-fields">  
-        <div class="hours">  
-            <paper-input
-                required
-                auto-validate
-                type="number"
-                min="00"
-                max="23"
-                error-message="Hour must be a number between 0 and 23"
-                label="Hour (0-23)"
-                value="{{ date.hour::input }}">
-            </paper-input>
+        <div class="dates-fields">  
+            <div class="time">  
+                <paper-input
+                    required
+                    auto-validate
+                    type="number"
+                    min="00"
+                    max="23"
+                    error-message="Hour must be a number between 0 and 23"
+                    label="Hour (0-23)"
+                    value="{{ date.hour::input }}">
+                </paper-input>
 
-            <paper-input
-                required
-                auto-validate
-                type="number"
-                min="00"
-                max="59"
-                error-message="Hour must be a number between 0 and 59"
-                label="Mins (0-59)"
-                value="{{ date.mins::input }}">
-            </paper-input>
-    </div>
+                <paper-input
+                    required
+                    auto-validate
+                    type="number"
+                    min="00"
+                    max="59"
+                    error-message="Hour must be a number between 0 and 59"
+                    label="Mins (0-59)"
+                    value="{{ date.mins::input }}">
+                </paper-input>
+            </div>
 
-    <div>
-    <paper-input
-        required
-        auto-validate
-        type="number"
-        min="1"
-        max="31"
-        error-message="Day must be a number between 1 and 31"
-        label="Days (1-31)"
-        value="{{ date.day::input }}">
-    </paper-input>
+            <div class="date">
+                <paper-input
+                    required
+                    auto-validate
+                    type="number"
+                    min="1"
+                    max="31"
+                    error-message="Day must be a number between 1 and 31"
+                    label="Days (1-31)"
+                    value="{{ date.day::input }}">
+                </paper-input>
 
-    <paper-dropdown-menu vertical-align="bottom" horizontal-align="left" label="Months"  >
-        <paper-listbox slot="dropdown-content" class="dropdown-content" selected="{{ date.month }}" >
-          <paper-item >January</paper-item>
-          <paper-item >February</paper-item>
-          <paper-item >March</paper-item>
-          <paper-item >April</paper-item>
-          <paper-item >May</paper-item>
-          <paper-item >June</paper-item>
-          <paper-item >July</paper-item>
-          <paper-item >August</paper-item>
-          <paper-item >September</paper-item>
-          <paper-item >October</paper-item>
-          <paper-item >November</paper-item>
-          <paper-item >December</paper-item>
-        </paper-listbox>
-      </paper-dropdown-menu>
+                <paper-dropdown-menu vertical-align="bottom" horizontal-align="left" label="Months"  >
+                    <paper-listbox slot="dropdown-content" class="dropdown-content" selected="{{ date.month }}" >
+                    <paper-item >January</paper-item>
+                    <paper-item >February</paper-item>
+                    <paper-item >March</paper-item>
+                    <paper-item >April</paper-item>
+                    <paper-item >May</paper-item>
+                    <paper-item >June</paper-item>
+                    <paper-item >July</paper-item>
+                    <paper-item >August</paper-item>
+                    <paper-item >September</paper-item>
+                    <paper-item >October</paper-item>
+                    <paper-item >November</paper-item>
+                    <paper-item >December</paper-item>
+                    </paper-listbox>
+                </paper-dropdown-menu>
 
-      <paper-dropdown-menu vertical-align="bottom" horizontal-align="left" label="Years">
-        <paper-listbox slot="dropdown-content" class="dropdown-content" attr-for-selected="item-name" selected="{{ date.year }}" >
-          <paper-item item-name="2019">2019</paper-item>
-          <paper-item item-name="2020">2020</paper-item>
-          <paper-item item-name="2021">2021</paper-item>
-          <paper-item item-name="2022">2022</paper-item>
-          <paper-item item-name="2023">2023</paper-item>
-        </paper-listbox>
-      </paper-dropdown-menu>
-    </div>
-    </div>
+                <paper-dropdown-menu vertical-align="bottom" horizontal-align="left" label="Years">
+                    <paper-listbox slot="dropdown-content" class="dropdown-content" attr-for-selected="item-name" selected="{{ date.year }}" >
+                    <paper-item item-name="2019">2019</paper-item>
+                    <paper-item item-name="2020">2020</paper-item>
+                    <paper-item item-name="2021">2021</paper-item>
+                    <paper-item item-name="2022">2022</paper-item>
+                    <paper-item item-name="2023">2023</paper-item>
+                    </paper-listbox>
+                </paper-dropdown-menu>
+            </div>
+        </div>
     </template>
 
     <script>

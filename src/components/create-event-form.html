@@ -8,13 +8,15 @@
     <template>
         <style include="shared-styles">
             :host {
-                display: block
+                display: block;
+                max-width: 960px;
             }
         </style>
 
     
     <div class="card">
-        <form >
+        <h1>Create new event</h1>
+        <form>
             <paper-input
                 required
                 auto-validate
@@ -57,18 +59,18 @@
 
             <paper-dropdown-menu vertical-align="bottom" horizontal-align="left" label="Category">
                     <paper-listbox slot="dropdown-content" class="dropdown-content" attr-for-selected="item-name" selected="{{ event.category }}" >
-                      <paper-item item-name="arts">Arts</paper-item>
-                      <paper-item item-name="business">Business</paper-item>
-                      <paper-item item-name="classes">Classes</paper-item>
-                      <paper-item item-name="parties">Parties</paper-item>
-                      <paper-item item-name="music">Music</paper-item>
-                      <paper-item item-name="sports & wellness">Sports & Wellness</paper-item>
-                      <paper-item item-name="food & drink">Food & Drink</paper-item>
+                        <paper-item item-name="arts">Arts</paper-item>
+                        <paper-item item-name="business">Business</paper-item>
+                        <paper-item item-name="classes">Classes</paper-item>
+                        <paper-item item-name="parties">Parties</paper-item>
+                        <paper-item item-name="music">Music</paper-item>
+                        <paper-item item-name="sports & wellness">Sports & Wellness</paper-item>
+                        <paper-item item-name="food & drink">Food & Drink</paper-item>
                     </paper-listbox>
             </paper-dropdown-menu>
 
             <date-inputs on-date-changed="dateChanged"></date-inputs>  
-            <paper-button on-click="createEvent">Create Event </paper-button>
+            <paper-button class="green" raised on-click="createEvent" disabled="[[missing]]">Create Event </paper-button>
         </form>
     </div>
 
@@ -99,10 +101,9 @@
                     }
             };
         }
-            /** gets date property when new input added and sets event.date with key and value
+            /** Gets date property when new input added and sets event.date with key and value
              * @param {Object} event 
              */
-
             dateChanged(e) {
                if(!e.detail.path) {
                    return
@@ -110,7 +111,7 @@
                this.set(e.detail.path, e.detail.value)
             }
 
-            /** gets compelete date property and transfomrs it into timestamp. Then dispatches custom event to inform parent component
+            /** Gets compelete date property and transfomrs it into timestamp. Then dispatches custom event to inform parent component
              * @param {Object} e 
              */
             createEvent(e) {
@@ -122,7 +123,6 @@
                     detail: this.event
                 }));
             }
-  
         }
 
         window.customElements.define(CreateEventForm.is, CreateEventForm);

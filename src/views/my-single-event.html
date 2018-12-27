@@ -2,7 +2,12 @@
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="import" href="../../bower_components/paper-toast/paper-toast.html">
+<link rel="import" href="../../bower_components/google-map/google-map-search.html"/>
+<link rel="import" href="../../bower_components/google-map/google-map.html" />
+<link rel="import" href="../../bower_components/google-map/google-map-marker.html"/>
+
 <link rel="import" href="../../src/components/show-date.html">
+
 <link rel="import" href="../theme/shared-styles.html">
 
 <dom-module id="my-single-event">
@@ -10,6 +15,13 @@
         <style include="shared-styles">
             :host {
                 display: block
+            }
+            google-map{
+                height: 500px;
+            }
+            h4{
+                text-transform:uppercase;
+                font-size: 0.8em;
             }
         </style>
 
@@ -36,17 +48,49 @@
     </iron-ajax>
 
     <div class="card">
-        <h2>[[ event.name ]]</h2>
-        <h3>Organizer: [[ event.organizer ]]</h3>
-        <span> Location: [[ event.location ]]</span>
-        <p>[[ event.description ]]</p>
-        <show-date timestamp="[[ event.date ]]" format="es"></show-date>
-        <p>Asistants: [[ event.confirmations ]]</p>
-        <p>Rejections: [[ event.rejections ]]</p>
-        <paper-button toggles raised class="custom green" id="confirmationButton" on-click="confirmAssistance">Confirm</paper-button>
-        <paper-button toggles raised class="custom red" id="declineButton" on-click="declineAssistance">Decline</paper-button>
+        <section>
+            <column>
+                <h4>[[ event.category ]]</h4>
+                <h1>[[ event.name ]]</h1>
+                <h3>Organizer: [[ event.organizer ]]</h3>
+                <span> Location: [[ event.location ]]</span>
+                <p>[[ event.description ]]</p>
+                <show-date timestamp="[[ event.date ]]" format="es"></show-date>
+                <p>Asistants: [[ event.confirmations ]]</p>
+                <p>Rejections: [[ event.rejections ]]</p>
+                <paper-button toggles raised class="custom green" id="confirmationButton" on-click="confirmAssistance">Confirm</paper-button>
+                <paper-button toggles raised class="custom red" id="declineButton" on-click="declineAssistance">Decline</paper-button>
+            </column>
+            <column>
+                <google-map-search
+                    map="[[map]]"
+                    global-search="true"
+                    query="[[event.location]]"
+                    results="{{ results }}"
+                >
+                </google-map-search>
+                <google-map
+                    map="{{ map }}"
+                    zoom="18"
+                    fit-to-markers
+                    latitude="[[ results.0.latitude ]]"
+                    longitude="[[ results.0.longitude ]]"
+                    disable-default-ui
+                    api-key="AIzaSyCRwd4w5MejrjWSZQ52t0R9xyujp-vtT8o"
+                >
+                    <template is="dom-repeat" items="{{ results }}" as="marker">
+                        <google-map-marker
+                        latitude="{{ marker.latitude }}"
+                        longitude="{{ marker.longitude }}"
+                        >
+                        <h2>{{ marker.name }}</h2>
+                        <span>{{ marker.formatted_location }}</span>
+                        </google-map-marker>
+                    </template>
+                </google-map>
+            </column>
+        </section>
     </div>
-
     <paper-toast id="success"></paper-toast>
     <paper-toast id="error"></paper-toast>
     </template>
