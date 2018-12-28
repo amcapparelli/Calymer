@@ -8,13 +8,6 @@ Users can search events by location, edit, create and delete new events.
 
 They can also confirm or reject assisatance to events.
 
-Developed by: 
-+ Mikolaj Bernecki
-+ Jorge Abad
-+ Gloria Fernandez
-+ Alejandro Capparelli
-+ David Perailes 
-
 ## Git clone
 
 ```
