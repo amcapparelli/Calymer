@@ -1,49 +1,16 @@
 {
   "events": [
     {
-      "category": "business",
-      "name": "Compleaños Miko",
-      "organizer": "Miko",
-      "description": "Comple Miko",
-      "location": "c/Mayor 1, Madrid",
-      "date": 1657449000000,
-      "confirmations": "",
+      "name": "Partido de Tenis",
+      "organizer": "Alejandro",
+      "description": "final de tenis en Wimbledon",
+      "location": "London",
+      "minutes": "180",
+      "category": "sports & wellness",
+      "date": 1562752800000,
+      "confirmations": 2,
       "rejections": "",
-      "id": 13
-    },
-    {
-      "name": "Evento 3",
-      "organizer": "sdjfal",
-      "description": "dfa",
-      "location": "madrid",
-      "category": "music",
-      "date": 1673521920000,
-      "confirmations": "",
-      "rejections": "",
-      "id": 16
-    },
-    {
-      "name": "event 4",
-      "organizer": "ksdklfaklsfjl",
-      "description": "sldkfjsdkl",
-      "location": "barcelona",
-      "category": "classes",
-      "date": 1697195580000,
-      "confirmations": "",
-      "rejections": "",
-      "id": 17
-    },
-    {
-      "name": "evento con duracion 3",
-      "organizer": "Jorge",
-      "description": "cualquier",
-      "location": "murcia",
-      "minutes": "60",
-      "category": "arts",
-      "date": null,
-      "confirmations": 1,
-      "rejections": "",
-      "id": 18
+      "id": 19
     }
   ]
 }
