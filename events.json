@@ -41,7 +41,7 @@
       "minutes": "60",
       "category": "arts",
       "date": null,
-      "confirmations": "",
+      "confirmations": 1,
       "rejections": "",
       "id": 18
     }

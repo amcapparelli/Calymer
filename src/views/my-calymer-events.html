@@ -5,6 +5,7 @@
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../components/event-card.html">
 <link rel="import" href="../components/event-map.html">
+<link rel="import" href="../components/my-filter.html">
 <link rel="import" href="../theme/card-styles.html">
 
 <dom-module id="my-calymer-events">
@@ -54,10 +55,8 @@
         <container>
             <section>
                 <container>
-                    <h1>Events</h1>
-                    <paper-input label="Find events in your city" class="filter" value="{{ city::input }}">
+                    <my-filter on-city-changed="getCity"></my-filter>
                 </container>
-            </paper-input>
             </section>
 
             <section>
@@ -111,6 +110,10 @@
                     return 1;
                 }
                 return 0;
+            }
+
+            getCity(e) {
+                this.set('city', e.detail.value)
             }
 
             /** This method filters the events array by location

@@ -1,0 +1,54 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="my-filter">
+    <template>
+        <style>
+            :host {
+                display: block
+            }
+        </style>
+
+    <section>
+        <container>
+            <h1>Events</h1>
+            <paper-input label="Find events in your city" class="filter" value="{{ city::input }}"> </paper-input>
+        </container>
+    </section>
+
+    </template>
+
+    <script>
+        /**
+         * `my-filter` Description
+         *
+         * @summary ShortDescription.
+         * @customElement
+         * @polymer
+         * @extends {Polymer.Element}
+         */
+        class MyFilter extends Polymer.Element {
+            /**
+             * String providing the tag name to register the element under.
+             */
+            static get is() {
+                return 'my-filter';
+            }
+
+            /**
+             * Object describing property-related metadata used by Polymer features
+             */
+            static get properties() {
+                return {
+                    city: {
+                        type: String,
+                        notify: true
+                    }
+                    
+                };
+            }
+
+        }
+
+        window.customElements.define(MyFilter.is, MyFilter);
+    </script>
+</dom-module>
