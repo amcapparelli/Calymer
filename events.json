@@ -11,6 +11,18 @@
       "confirmations": 2,
       "rejections": "",
       "id": 19
+    },
+    {
+      "name": "Partido de Golf",
+      "organizer": "Juan",
+      "description": "torneo en USA",
+      "location": "New York",
+      "minutes": "120",
+      "category": "sports & wellness",
+      "date": 1552215600000,
+      "confirmations": "",
+      "rejections": "",
+      "id": 20
     }
   ]
 }
