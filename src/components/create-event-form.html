@@ -20,14 +20,14 @@
                 auto-validate
                 error-message="Required field"
                 label="Event Name"
-                value="{{ event.name::input }}">
+                value="{{ event.name }}">
             </paper-input>
             <paper-input
                 required
                 auto-validate
                 error-message="Required field"
                 label="Organizer"
-                value="{{ event.organizer::input }}">
+                value="{{ event.organizer }}">
             </paper-input>
             <paper-input
                 required
@@ -35,14 +35,14 @@
                 maxlength="150"
                 error-message="Required field (150 characters max)."
                 label="Event Description (150 characters max)"
-                value="{{ event.description::input }}">
+                value="{{ event.description}}">
             </paper-input>
             <paper-input
                 required
                 auto-validate
                 error-message="Required field"
                 label="Location"
-                value="{{ event.location::input }}">
+                value="{{ event.location }}">
             </paper-input>
 
             <paper-input
@@ -52,7 +52,7 @@
                 max="1440"
                 error-message="Required field. Max 1440 minutes"
                 label="Duration (in minutes, max 1440)"
-                value="{{ event.minutes::input }}">
+                value="{{ event.minutes }}">
             </paper-input>
 
             <paper-dropdown-menu vertical-align="bottom" horizontal-align="left" label="Category">

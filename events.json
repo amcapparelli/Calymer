@@ -1,13 +1,13 @@
 {
   "events": [
     {
-      "name": "Partido de Tenis",
+      "name": "Final Roland Garros",
       "organizer": "Alejandro",
       "description": "final de tenis en Wimbledon",
-      "location": "London",
+      "location": "Paris",
       "minutes": "180",
-      "category": "sports & wellness",
-      "date": 1562752800000,
+      "category": "business",
+      "date": "2019-06-11T22:00:00.000Z",
       "confirmations": 2,
       "rejections": "",
       "id": 19
@@ -23,6 +23,41 @@
       "confirmations": "",
       "rejections": "",
       "id": 20
+    },
+    {
+      "name": "Prueba",
+      "organizer": "cualquiera",
+      "description": "cualquiera",
+      "location": "madrid",
+      "minutes": "120",
+      "category": "food & drink",
+      "date": 1668078000000,
+      "confirmations": "",
+      "rejections": "",
+      "id": 21
+    },
+    {
+      "name": "Prueba sin inputs 2",
+      "organizer": "yo",
+      "description": "bla",
+      "location": "madrid",
+      "minutes": "100",
+      "category": "classes",
+      "date": null,
+      "confirmations": "",
+      "rejections": "",
+      "id": 22
+    },
+    {
+      "organizer": "gloria",
+      "description": "prueba en everis",
+      "location": "barcelona",
+      "minutes": "100",
+      "category": "parties",
+      "date": 1670803260000,
+      "confirmations": "",
+      "rejections": "",
+      "id": 23
     }
   ]
 }
