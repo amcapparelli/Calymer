@@ -25,6 +25,7 @@
 
         </style>
 
+   
     <div class="dates-fields">  
         <div class="hours">  
             <paper-input
@@ -35,7 +36,7 @@
                 max="23"
                 error-message="Hour must be a number between 0 and 23"
                 label="Hour (0-23)"
-                value="{{ date.hour::input }}">
+                value="{{ date.hour }}">
             </paper-input>
 
             <paper-input
@@ -46,7 +47,7 @@
                 max="59"
                 error-message="Hour must be a number between 0 and 59"
                 label="Mins (0-59)"
-                value="{{ date.mins::input }}">
+                value="{{ date.mins }}">
             </paper-input>
     </div>
 
@@ -59,7 +60,7 @@
         max="31"
         error-message="Day must be a number between 1 and 31"
         label="Days (1-31)"
-        value="{{ date.day::input }}">
+        value="{{ date.day }}">
     </paper-input>
 
     <paper-dropdown-menu vertical-align="bottom" horizontal-align="left" label="Months"  >
